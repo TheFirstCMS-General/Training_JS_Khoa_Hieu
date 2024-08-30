@@ -1,0 +1,14 @@
+.content_row {
+    border: none;
+}
+.content_row:focus {
+    outline: none;
+  }
+.button_commands {
+    display: flex;
+    justify-self: center;
+    align-items:center;
+}
+.button_commands .button_command {
+    padding-left: 5px;
+}
