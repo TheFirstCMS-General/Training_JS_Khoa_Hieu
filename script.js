@@ -1,5 +1,6 @@
 //Get data form json
 var student = [];
+
 var data = await fetch('./data.json')
     .then(response => response.json())
     .then(data => {
@@ -14,6 +15,7 @@ exportExcelButton.addEventListener('click', ExportExcel);
 const addButton = document.getElementById('Add');
 addButton.addEventListener('click', AddStudent);
 
+// NÊN ĐẶT Ở TRONG WINDOW.ONLOAD || DOCUMENT.ONLOAD
 student.forEach(obj => AddElementToTable(obj));
 
 function AddElementToTable(obj) {
@@ -69,6 +71,7 @@ function removeParentElement(element) {
 
 let payButton = document.getElementById('pay');
 
+// REFACTOR LẠI HÀM NÀY: WHILE(true), INIT VALUE, REMOVE UNUSED CODE
 payButton.addEventListener('click', function (event) {
     let id;
     while (true) {
@@ -93,6 +96,7 @@ function removeParentElement(element) {
     }
 }
 
+// KHÔNG DÙNG ID ĐƯỢC À?
 let saveButton = document.querySelectorAll('.save');
 saveButton.forEach(item => {
     item.addEventListener('click', function (event) {
@@ -124,7 +128,7 @@ saveButton.forEach(item => {
 
 
 
-
+// THINKING ABOUT AWAIT
 async function saveDataToJsonFile(data) {
     const jsonData = JSON.stringify(data);
 
@@ -136,6 +140,7 @@ async function saveDataToJsonFile(data) {
     }
 }
 
+// INIT VALUE, 
 function AddStudent() {
     let name = prompt("Enter your name:");
     let gender = prompt("Enter your gender:");
@@ -163,6 +168,7 @@ function AddStudent() {
     student.push(obj);
 }
 
+// GOOD
 async function ExportExcel() {
     console.log("Start Export Excel");
     const workbook = new ExcelJS.Workbook();
