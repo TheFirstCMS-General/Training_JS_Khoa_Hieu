@@ -3,6 +3,8 @@
 
 var student = [];
 await fetch('./data.json')
+
+var data = await fetch('./data.json')
     .then(response => response.json())
     .then(data => {
         const arrayData = data.map(item => item);
@@ -92,6 +94,8 @@ function initEvent(tr) {
     })
 }
 
+student.forEach(obj => AddElementToTable(obj));
+
 function AddElementToTable(obj) {
     const tr = document.createElement('tr');
     tr.className = `tr${obj.Number}`;
@@ -140,6 +144,73 @@ let payButton = document.getElementById('pay');
 payButton.addEventListener('click', PayMonney);
 
 //Add Button
+payButton.addEventListener('click', function (event) {
+    let id;
+    while (true) {
+        id = prompt("Please enter your id student:");
+        if (id !== null && !isNaN(id)) {
+            break;
+        }
+    }
+    let money;
+    while (true) {
+        money = prompt("Please enter your id student:");
+        if (money !== null && !isNaN(money)) {
+            break;
+        }
+    }
+    let idTr = document.querySelectorAll(`tr${id}`);
+});
+
+function removeParentElement(element) {
+    if (element && element.parentNode) {
+        element.parentNode.removeChild(element);
+    }
+}
+
+let saveButton = document.querySelectorAll('.save');
+saveButton.forEach(item => {
+    item.addEventListener('click', function (event) {
+        const clickedElement = event.target;
+        const parentElement = clickedElement.parentElement.parentElement;
+        let id = parentElement.querySelector('.identify').value;
+        let name = parentElement.querySelector('.name').value;
+        let gender = parentElement.querySelector('.gender').value;
+        let money = parentElement.querySelector('.money').value;
+        let status = parentElement.querySelector('.status').value;
+        let dateofbirth = parentElement.querySelector('.dateofbirth').value;
+        let address = parentElement.querySelector('.address').value;
+
+        student.forEach(item => {
+            if (item.Number == id) {
+                item.Name = name;
+                item.Gender = gender;
+                item.Money = money;
+                item.Status = status;
+                item.DateOfBirth = dateofbirth;
+                item.Address = address;
+            }
+        })
+        saveDataToJsonFile(student);
+    });
+})
+
+
+
+
+
+// THINKING ABOUT AWAIT
+async function saveDataToJsonFile(data) {
+    const jsonData = JSON.stringify(data);
+
+    try {
+        fs.writeFile('./data.json', jsonData);
+        console.log('Dữ liệu đã được ghi vào file data.json');
+    } catch (err) {
+        console.error(err);
+    }
+}
+
 function AddStudent() {
     let name = prompt("Enter your name:");
     let gender = prompt("Enter your gender:");
@@ -212,6 +283,7 @@ async function saveDataToJsonFile(data) {
     input.on('end', () => input.destroy());
 }
 
+// GOOD
 async function ExportExcel() {
     console.log("Start Export Excel");
     const workbook = new ExcelJS.Workbook();
