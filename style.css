@@ -1,3 +1,6 @@
+.table {
+    margin: 10px;
+}
 .content_row {
     border: none;
 }
@@ -9,6 +12,6 @@
     justify-self: center;
     align-items:center;
 }
-.button_commands .button_command {
-    padding-left: 5px;
+.button_commands .delete {
+    margin-right: 5px;
 }

@@ -1,0 +1,48 @@
+[
+    {
+        "Number": 1,
+        "DetailMoney": [
+            {
+                "Phase" : 1,
+                "Money" : 100,
+                "Date": "2024/01/12"
+            },
+            {
+                "Phase" : 2,
+                "Money" : 300,
+                "Date": "2024/11/12"
+            }
+        ]
+    },
+    {
+        "Number": 2,
+        "DetailMoney": [
+            {
+                "Phase" : 1,
+                "Money" : 200,
+                "Date": "2024/12/12"
+            },
+            {
+                "Phase" : 2,
+                "Money" : 400,
+                "Date": "2024/03/12"
+
+            }
+        ]
+    },
+    {
+        "Number": 3,
+        "DetailMoney": [
+            {
+                "Phase" : 1,
+                "Money" : 300,
+                "Date": "2024/05/12"
+            },
+            {
+                "Phase" : 2,
+                "Money" : 500,
+                "Date": "2024/04/12"
+            }
+        ]
+    }
+]

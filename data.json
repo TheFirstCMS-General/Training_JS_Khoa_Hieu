@@ -3,36 +3,27 @@
         "Number": 1,
         "Name": 1,
         "Gender": 1,
-        "Money": 1,
+        "Money": 0,
         "Status": 1,
         "DateOfBirth": 1,
-        "Address": 1,
-        "First": 0,
-        "Second": 0,
-        "Third": 0
+        "Address": 1
     },
     {
         "Number": 2,
         "Name": 2,
         "Gender": 2,
-        "Money": 2,
+        "Money": 0,
         "Status": 2,
         "DateOfBirth": 2,
-        "Address": 2,
-        "First": 0,
-        "Second": 0,
-        "Third": 0
+        "Address": 2
     },
     {
         "Number": 3,
         "Name": 3,
         "Gender": 3,
-        "Money": 3,
+        "Money": 0,
         "Status": 3,
         "DateOfBirth": 3,
-        "Address": 3,
-        "First": 0,
-        "Second": 0,
-        "Third": 0
+        "Address": 3
     }
 ]

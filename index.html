@@ -13,13 +13,13 @@
 <body>
   <div>
     <div>
-      <button id="Add">Add</button>
-      <button id="Pay">Pay</button>
+      <button id="add">Add</button>
+      <button id="pay">Pay</button>
       <button id="importExcelButton">Import Excel</button>
       <button id="exportExcelButton">Export Excel</button>
     </div>
     <div>
-      <table class="table">
+      <table class="table table-hover .table-bordered">
         <thead>
           <tr>
             <th scope="col">#</th>
@@ -29,6 +29,7 @@
             <th scope="col">Status</th>
             <th scope="col">Date of birth</th>
             <th scope="col">Address</th>
+            <th scope="col"></th>
           </tr>
         </thead>
         <tbody id="body_table">
@@ -40,14 +41,14 @@
   <script>
     
   </script>
-  <script type="module" src="https://cdn.jsdelivr.net/npm/fstream@1.0.12/fstream.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/exceljs/4.4.0/exceljs.min.js"
     integrity="sha512-dlPw+ytv/6JyepmelABrgeYgHI0O+frEwgfnPdXDTOIZz+eDgfW07QXG02/O8COfivBdGNINy+Vex+lYmJ5rxw=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script type="module" src="script.js"></script>
+  <script type="module" src="./script.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
     crossorigin="anonymous"></script>
+    <!-- <script type="module" src="https://cdn.jsdelivr.net/npm/fs-js@1.0.6/index.min.js"></script> -->
 </body>
 
 </html>

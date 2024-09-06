@@ -1,6 +1,8 @@
 {
   "dependencies": {
-    "exceljs": "^4.4.0"
+    "exceljs": "^4.4.0",
+    "fstream": "^1.0.12",
+    "jsonfile": "^6.1.0"
   },
   "type": "module"
 }
