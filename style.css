@@ -15,3 +15,16 @@
 .button_commands .delete {
     margin-right: 5px;
 }
+
+#staticEmail2 {
+    width: 100px;
+    margin: 5px 0px;
+    border: solid
+}
+
+.wrapInputPhase{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}

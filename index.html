@@ -12,35 +12,73 @@
 
 <body>
   <div>
-    <div>
-      <button id="add">Add</button>
-      <button id="pay">Pay</button>
-      <button id="importExcelButton">Import Excel</button>
-      <button id="exportExcelButton">Export Excel</button>
+    <div style="display: flex;">
+      <button class="btn btn-primary" id="add">Add Student</button>
+      <button class="btn btn-primary" id="pay">Payment</button>
+      <button class="btn btn-primary" id="importExcel">Import Excel</button>
+      <input type="file" id="fileInput" accept=".xlsx,.xls" hidden = "true">
+      <button class="btn btn-primary" id="exportExcel">Export Excel</button>
+      <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+          Phase
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+        </ul>
+      </div>
     </div>
     <div>
-      <table class="table table-hover .table-bordered">
+      <table class="table table-hover .table-bordered tableStudent">
         <thead>
           <tr>
             <th scope="col">#</th>
             <th scope="col">Name</th>
             <th scope="col">Gender</th>
-            <th scope="col">Money</th>
-            <th scope="col">Status</th>
             <th scope="col">Date of birth</th>
             <th scope="col">Address</th>
-            <th scope="col"></th>
+            <th scope="col">Money</th>
+            <th scope="col">Status</th>
+            <th scope="col">Function</th>
           </tr>
         </thead>
-        <tbody id="body_table">
+        <tbody id="body_table" class="bodyoftable">
+          
+        </tbody>
+      </table>
+      <table class="table table-hover .table-bordered tablePayment">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Phase</th>
+            <th scope="col">Money</th>
+            <th scope="col">MinimumMoney</th>
+            <th scope="col">Date</th>
+            <th scope="col">DeadLine</th>
+          </tr>
+        </thead>
+        <tbody id="body_table" class="bodyoftable">
           
         </tbody>
       </table>
     </div>
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Notification</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-  <script>
-    
-  </script>
+
+  
   <script src="https://cdnjs.cloudflare.com/ajax/libs/exceljs/4.4.0/exceljs.min.js"
     integrity="sha512-dlPw+ytv/6JyepmelABrgeYgHI0O+frEwgfnPdXDTOIZz+eDgfW07QXG02/O8COfivBdGNINy+Vex+lYmJ5rxw=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>

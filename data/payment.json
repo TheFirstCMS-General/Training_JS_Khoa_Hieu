@@ -1,0 +1,14 @@
+[
+    {
+        "StudentID": 1,
+        "Phase": 1,
+        "Money": 200,
+        "Date": "2024/03/22"
+    },
+    {
+        "StudentID": 2,
+        "Phase": 2,
+        "Money": 300,
+        "Date": "2024/08/22"
+    }
+]

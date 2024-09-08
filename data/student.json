@@ -1,0 +1,30 @@
+[
+    {
+        "ID": 1,
+        "Name": "Hieu",
+        "Gender": "Male",
+        "DateOfBirth": "2024/11/14",
+        "Address": "HP",
+        "TotalMoney": 0,
+        "Status": "Success"
+
+    },
+    {
+        "ID": 2,
+        "Name": "HueiWei",
+        "Gender": "Male",
+        "DateOfBirth": "2024/03/03",
+        "Address": "HN",
+        "TotalMoney": 0,
+        "Status": "Success"
+    },
+    {
+        "ID": 3,
+        "Name": "Huei",
+        "Gender": "Male",
+        "DateOfBirth": "2024/10/20",
+        "Address": "QN",
+        "TotalMoney": 0,
+        "Status": "Success"
+    }
+]
