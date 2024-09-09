@@ -14,6 +14,8 @@ const exportExcelButton = document.getElementById('exportExcel');
 const importExcelButton = document.getElementById('importExcel')
 const addButton = document.getElementById('add');
 const payButton = document.getElementById('pay');
+const originButton = document.getElementById('origin');
+const searchButton = document.getElementById('search');
 const dropdownMenu = document.querySelector('.dropdown-menu');
 var isConfig = false;
 var numberOfPhase = 0;
@@ -26,12 +28,25 @@ importExcelButton.addEventListener('click', async () => {
 });
 addButton.addEventListener('click', AddStudent);
 payButton.addEventListener('click', PayMonney);
+originButton.addEventListener('click', function (event) {
+    tableStudent.querySelector('.bodyoftable').innerHTML = "";
+    initDataTable(students);
+});
+searchButton.addEventListener('click', function(event) {
+    event.preventDefault();
+    
+    const inputValue = document.querySelector('.form-control').value;
+    
+    let studentsFilter = students.filter(item => item.Name.toUpperCase().includes(inputValue.toUpperCase()));
+    
+    tableStudent.querySelector('.bodyoftable').innerHTML = "";
+    initDataTable(studentsFilter);
+  });
 
 //Init UI
-initDataTable();
+initDataTable(students);
 
-function initDataTable() {
-    console.log(students);
+function initDataTable(students) {
     students.forEach(student => {
         let money = 0;
         let moneyArray = payments.filter(item => item.StudentID == student.ID)
@@ -43,6 +58,7 @@ function initDataTable() {
         AddRowToStudentTable(student)
     });
     // tablePayment.hidden = "true";
+    HiddenAllExceptTableStudent();
 }
 
 function AddRowToStudentTable(student) {
@@ -72,9 +88,9 @@ function AddRowToStudentTable(student) {
             </td>
             <td>
                 <div class = "functions" style = "display: flex">
-                    <button class = "delete btn btn-primary">Delete</button>
-                    <button class = "save btn btn-primary">Save</button>
-                    <button class = "detail btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Detail</button>
+                    <button class = "delete btn btn-primary"><i class="fa-solid fa-delete-left"></i></button>
+                    <button class = "save btn btn-primary"><i class="fa-solid fa-floppy-disk"></i></button>
+                    <button class = "detail btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-solid fa-circle-info"></i></button>
                 </div>
             </td>
     `;
@@ -265,7 +281,7 @@ function PayMonney() {
 
     console.log(tableStudent);
     tableStudent.querySelector('.bodyoftable').innerHTML = "";
-    initDataTable();
+    initDataTable(students);
 }
 
 function initEventPhaseElement(phaseLI) {
@@ -275,12 +291,23 @@ function initEventPhaseElement(phaseLI) {
         // tablePayment.hidden = "false";
 
         let phase = +(dropdownItem.textContent);
-        console.log(phase);
         let phaseConfig = configs.find(item => item.Phase == phase);
-        console.log(phaseConfig);
 
         let paymentStudents = payments.filter(item => item.Phase == phase)
             .sort((item1, item2) => item1.Money < item2.Money);
+
+        let studentIDArrayPayment = paymentStudents.map(item => item.StudentID);
+        let studentIDArrayTotal = students.map(item => item.ID);
+        studentIDArrayTotal.forEach(item => {
+            if(!studentIDArrayPayment.includes(item)) {
+                let obj = new Object();
+                obj.StudentID = item;
+                obj.Phase = phase;
+                obj.Money = 0;
+                obj.Date = formatDate(new Date());
+                paymentStudents.unshift(obj);
+            }
+        })
 
         paymentStudents.forEach(paymentStudent => {
             const paymentRow = document.createElement('tr');
@@ -305,8 +332,18 @@ function initEventPhaseElement(phaseLI) {
                     <input class = "content_row deadLine " value=${phaseConfig.Deadline}>
                 </td>
         `;
+            if(paymentStudent.Money < phaseConfig.MinimumMoney) {
+                let distance = CalculateDayDifference(paymentStudent.Date, phaseConfig.Deadline);
+                if(distance == 3) {
+                    paymentRow.classList.add("table-warning");
+                }
+                if(distance < 3) {
+                    paymentRow.classList.add("table-danger");
+                }
+            }
             tablePayment.querySelector('.bodyoftable').appendChild(paymentRow);
         })
+        HiddenAllExceptTablePayment();
     })
 }
 
@@ -381,5 +418,32 @@ async function ExportExcel() {
         link.remove();
     });
 }
+
+function HiddenAllExceptTableStudent() {
+    tablePayment.style.visibility = 'hidden';
+    tableStudent.style.visibility = 'visible';
+}
+
+function HiddenAllExceptTablePayment() {
+    tablePayment.style.visibility = 'visible';
+    tableStudent.style.visibility = 'hidden';
+}
+
+function CalculateDayDifference(dateString1, dateString2) {
+    const date1 = new Date(dateString1);
+    const date2 = new Date(dateString2);
+    
+    const diffTime = date2.getTime() - date1.getTime();
+    const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+    
+    return diffDays;
+  }
+
+  function formatDate(date) {
+    const year = date.getFullYear();
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const day = date.getDate().toString().padStart(2, '0');
+    return `${year}/${month}/${day}`;
+  }
 
 
